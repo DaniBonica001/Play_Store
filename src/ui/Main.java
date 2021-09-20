@@ -15,7 +15,7 @@ public class Main {
 		createStore();
 		
 		String line;
-		int cases = Integer.parseInt(br.readLine());
+		int cases = Integer.parseInt(br.readLine());//La primer linea que es el numero de casos
 		System.out.println("cases: "+cases);
 		int cashiers, shelves, clients;
 		String infoShelf;
@@ -26,8 +26,7 @@ public class Main {
 				 cashiers = Integer.parseInt(line); //Lee la cantidad de puntos de pago
 					createCashiers(cashiers);				
 					
-					shelves = Integer.parseInt(br.readLine()); //Lee la cantidad de estantes			
-					
+					shelves = Integer.parseInt(br.readLine()); //Lee la cantidad de estantes				
 					for (int j=0;j<shelves;j++) {
 						infoShelf = br.readLine();
 						System.out.println("INFOSHELF: "+infoShelf);
