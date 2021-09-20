@@ -2,20 +2,28 @@ package model;
 
 public class Game {
 	
-	//Attributtes
+	//Attributes
 	private int id;	
 	
 	//Relations
 	private Game next;
 	private Game prev;
 	
-	//Cosntructor
+	//Constructor
 	public Game(int id) {
 		this.id = id;
 		next = null;
 		prev = null;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	
 	public void setNext(Game next) {
 		this.next = next;
@@ -32,6 +40,10 @@ public class Game {
 	public Game getPrev() {
 		return prev;
 	}
+
+	
+
+	
 
 	
 	

@@ -8,7 +8,7 @@ public class Store {
 	private ArrayList<Client> clients; ;
 	
 	public Store() {
-		clients = new ArrayList<>();
+		setClients(new ArrayList<>());
 			
 	}
 
@@ -18,7 +18,7 @@ public class Store {
 	}
 	
 	public void createShelves(String name,int levels,String []infoLevels) {
-		// TODO Auto-generated method stub
+		//System.out.println("SHELVES store");
 		
 	}
 
@@ -29,6 +29,17 @@ public class Store {
 		Client newClient = new Client(id);
 		newClient.createGames(lineSplit);		
 	}
+
+	
+	public void setClients(ArrayList<Client> clients) {
+		this.clients = clients;
+	}
+	
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
+	
 
 	
 

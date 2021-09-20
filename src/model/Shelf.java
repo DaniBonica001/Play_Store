@@ -18,6 +18,10 @@ public class Shelf {
 	public String getId() {
 		return id;
 	}
+	
+	public void hash() {
+		
+	}
 
 	
 

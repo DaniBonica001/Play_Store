@@ -17,23 +17,23 @@ public class Client {
 	public void createGames(String[] lineSplit) {
 		for (int i=1;i<=lineSplit.length-1;i++) {
 			Game newGame = new Game(Integer.parseInt(lineSplit[i]));
-			insertGame(newGame,first,first.getNext());
+			if (first == null) {
+				first = newGame;
+			}else {
+				insertGame(newGame,first,first.getNext());
+			}
+			
+			
 		}
 		
 	}
 	
 	private void insertGame(Game newGame, Game gamePrev, Game gameNext) {
-		if (first == null) {
-			first = newGame;
+		if (gameNext == null) {
+			gamePrev.setNext(newGame);
 		}else {
-			if (gameNext == null) {
-				gamePrev.setNext(newGame);
-			}else {
-				insertGame(newGame,gameNext,gameNext.getNext());
-			}
+			insertGame(newGame,gameNext,gameNext.getNext());
 		}		
-		
-		
 	}
 
 	public void setCode(String code) {
