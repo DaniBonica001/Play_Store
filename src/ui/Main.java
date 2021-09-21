@@ -3,6 +3,8 @@ package ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import model.Game;
 import model.Store;
 
 public class Main {
@@ -23,7 +25,7 @@ public class Main {
 		for (int i=0;i<cases;i++) {
 			line = br.readLine();
 			 while(line!=null) {
-				 cashiers = Integer.parseInt(line); //Lee la cantidad de puntos de pago
+				 cashiers = Integer.parseInt(line); //Lee la cantidad de cajeros
 					createCashiers(cashiers);				
 					
 					shelves = Integer.parseInt(br.readLine()); //Lee la cantidad de estantes				
@@ -55,6 +57,8 @@ public class Main {
 			store.createCashier();
 		}		
 	}
+	
+	/*
 	public static void createShelves(String infoShelf) throws IOException {
 		//System.out.println("SHELVES");
 		String nameShelf = String.valueOf(infoShelf.charAt(0));
@@ -69,14 +73,31 @@ public class Main {
 		
 		store.createShelves(nameShelf,levels, infoLevels);		
 	}
+	*/
+	public static void createShelves(String infoShelf) throws IOException {
+		String[] parts= infoShelf.split(" "); // parts=[Identificador NumeroDeJuegos]
+		Game[] games= new Game[Integer.parseInt(parts[1])];//un arreglo de juegos de tamaño del numero de juegos de la estanteria
+		
+		for(int i=0;i<Integer.parseInt(parts[1]);i++) {
+			System.out.print("*");
+			String[] infoGame=br.readLine().split(" "); //infogame=[codigo, precio, disponibilidad]
+			Game newGame= new Game(Integer.parseInt(infoGame[0]),Integer.parseInt(infoGame[1]), Integer.parseInt(infoGame[2]) );
+			System.out.println(newGame.toString());
+			games[i]=newGame;
+		}
+		
+		store.createShelves(infoShelf, games);
+	}
+	
 	
 	public static void createClients(int clients) throws IOException {
 		//System.out.println("CLIENTS");
 		String line;
 				
 		for (int i=0;i<clients;i++) {
-			line = br.readLine();
+			line = br.readLine();	
 			store.createClient(line);
+			
 		}
 	}
 	

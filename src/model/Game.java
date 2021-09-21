@@ -3,13 +3,22 @@ package model;
 public class Game {
 	
 	//Attributes
-	private int id;	
+	private int id;
+	private int price;
+	private int quantity;
 	
 	//Relations
 	private Game next;
 	private Game prev;
 	
 	//Constructor
+	public Game(int id, int price, int quantity) {
+		this.id = id;
+		this.price=price;
+		this.quantity=quantity;
+		next = null;
+		prev = null;
+	}
 	public Game(int id) {
 		this.id = id;
 		next = null;
@@ -39,6 +48,10 @@ public class Game {
 	
 	public Game getPrev() {
 		return prev;
+	}
+	
+	public String toString() {
+		return "GAME:"+id+"-"+price+"-"+quantity;
 	}
 
 	

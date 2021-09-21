@@ -14,6 +14,7 @@ public class Client {
 		first = null;
 	}
 
+	
 	public void createGames(String[] lineSplit) {
 		for (int i=1;i<=lineSplit.length-1;i++) {
 			Game newGame = new Game(Integer.parseInt(lineSplit[i]));
@@ -27,6 +28,7 @@ public class Client {
 		}
 		
 	}
+	
 	
 	private void insertGame(Game newGame, Game gamePrev, Game gameNext) {
 		if (gameNext == null) {
