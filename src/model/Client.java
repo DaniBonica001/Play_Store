@@ -1,35 +1,43 @@
 package model;
 
+import data_structures.MyLinkedList;
+
 public class Client {
 
 	//Attributes
 	private String code;
 	
 	//Relations
-	private Game first;
+	private MyLinkedList<Game> games;
+	
 	
 	//Constructor
 	public Client(String code) {
 		this.code = code;
-		first = null;
+		games = new MyLinkedList<>();		
 	}
 
 	
 	public void createGames(String[] lineSplit) {
 		for (int i=1;i<=lineSplit.length-1;i++) {
 			Game newGame = new Game(Integer.parseInt(lineSplit[i]));
+			games.createNode(newGame);
+			//System.out.println("New game: *"+newGame.getId());
+			
+			/*
 			if (first == null) {
 				first = newGame;
+				games.
 			}else {
 				insertGame(newGame,first,first.getNext());
 			}
-			
+			*/
 			
 		}
 		
 	}
 	
-	
+	/*
 	private void insertGame(Game newGame, Game gamePrev, Game gameNext) {
 		if (gameNext == null) {
 			gamePrev.setNext(newGame);
@@ -37,6 +45,7 @@ public class Client {
 			insertGame(newGame,gameNext,gameNext.getNext());
 		}		
 	}
+	*/
 
 	public void setCode(String code) {
 		this.code = code;
@@ -45,14 +54,17 @@ public class Client {
 	public String getCode() {
 		return code;
 	}
-
-	public void setFirst(Game first) {
-		this.first = first;
-	}
 	
-	public Game getFirst() {
-		return first;
+	public void setGames(MyLinkedList<Game> games) {
+		this.games = games;
 	}
+
+	public MyLinkedList<Game> getGames() {
+		return games;
+	}
+
+
+
 
 	
 

@@ -1,6 +1,6 @@
 package model;
 
-public class Game {
+public class Game implements Comparable<Game>{
 	
 	//Attributes
 	private int id;
@@ -52,6 +52,11 @@ public class Game {
 	
 	public String toString() {
 		return "GAME:"+id+"-"+price+"-"+quantity;
+	}
+	@Override
+	public int compareTo(Game o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
