@@ -1,6 +1,6 @@
-package data_structures;
+package MyLinkedList_data_structure;
 
-public class MyLinkedList<T extends Comparable<T>> {
+public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<T>{
 	
 	private Node<T> first;
 
@@ -120,7 +120,7 @@ public class MyLinkedList<T extends Comparable<T>> {
 		}	
 	}
 	
-	private Node<T> lookForNode(Node<T>searchedNode, Node<T>actualNode){
+	public Node<T> lookForNode(Node<T>searchedNode, Node<T>actualNode){
 		if(searchedNode==actualNode) {
 			return actualNode;
 		}

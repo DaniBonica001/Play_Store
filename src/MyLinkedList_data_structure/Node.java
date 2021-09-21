@@ -1,4 +1,4 @@
-package data_structures;
+package MyLinkedList_data_structure;
 
 public class Node<T extends Comparable<T>> {
 	

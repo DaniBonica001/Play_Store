@@ -1,6 +1,6 @@
 package model;
 
-import data_structures.MyLinkedList;
+import MyLinkedList_data_structure.MyLinkedList;
 
 public class Client {
 
