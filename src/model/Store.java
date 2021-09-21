@@ -17,13 +17,7 @@ public class Store {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/*
-	public void createShelves(String name,int levels,String []infoLevels) {
-		//System.out.println("SHELVES store");
-		
-	}
-	*/
+
 	public void createShelves(String info, Game[]games) {
 		Shelf shelf= new Shelf(info);
 		

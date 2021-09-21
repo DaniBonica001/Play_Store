@@ -57,23 +57,7 @@ public class Main {
 			store.createCashier();
 		}		
 	}
-	
-	/*
-	public static void createShelves(String infoShelf) throws IOException {
-		//System.out.println("SHELVES");
-		String nameShelf = String.valueOf(infoShelf.charAt(0));
-		int levels = Integer.parseInt(String.valueOf(infoShelf.charAt(infoShelf.length()-1)));
-		String [] infoLevels = new String [levels];
-		//System.out.println("nameShelf: "+nameShelf+" -Cantidad de niveles: "+ levels);
-		for(int i=0;i<infoLevels.length;i++) {
-			System.out.println("*");
-			
-			infoLevels[i]=br.readLine();
-		}
-		
-		store.createShelves(nameShelf,levels, infoLevels);		
-	}
-	*/
+
 	public static void createShelves(String infoShelf) throws IOException {
 		String[] parts= infoShelf.split(" "); // parts=[Identificador NumeroDeJuegos]
 		Game[] games= new Game[Integer.parseInt(parts[1])];//un arreglo de juegos de tamaño del numero de juegos de la estanteria
