@@ -142,5 +142,18 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 		return first;
 	}
 	
+	public int size() {
+		
+		Node<T>actualNode=first;
+		int contador=0;
+		while(actualNode!=null) {
+			contador++;
+			actualNode=actualNode.getNext();
+		}
+
+		return contador;
+	}
+	
+
 	
 }

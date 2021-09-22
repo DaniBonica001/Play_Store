@@ -74,7 +74,10 @@ public class Client {
 	public void setTime(int time) {
 		this.time = time;
 	}
-
+	
+	public int getNumberOfGames() {
+		return games.size();
+	}
 
 
 

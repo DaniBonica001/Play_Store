@@ -104,7 +104,16 @@ public class Main {
 			int numberMethod = Integer.parseInt(br.readLine());
 			
 			store.orderGames(id,numberMethod);
-		}		
+		}
+
+		//Después de ordenar los juegos se actualizarán los tiempos ya que los recogerán
+		for(int i=0;i<store.getClients().size();i++) {
+			int timeToAdd=store.getClients().get(i).getGames().size();
+			store.getClients().get(i).setTime(store.getClients().get(i).getTime()+timeToAdd);	
+			//System.out.println("TIEMPO DEL CLIENTE "+i+" :"+store.getClients().get(i).getTime());
+		}
+		
+
 	}
 	
 
