@@ -1,6 +1,7 @@
 package model;
 
 import MyLinkedList_data_structure.MyLinkedList;
+import MyStack_data_structure.MyStack;
 
 public class Client {
 
@@ -10,12 +11,14 @@ public class Client {
 	
 	//Relations
 	private MyLinkedList<Game> games;
+	private MyStack<Game> gamesHamper;
 	
 	
 	//Constructor
 	public Client(String code) {
 		this.code = code;
 		games = new MyLinkedList<>();
+		gamesHamper = new MyStack <>();
 		this.setTime(0);
 	}
 
@@ -25,29 +28,11 @@ public class Client {
 			Game newGame = new Game(Integer.parseInt(lineSplit[i]));
 			games.createNode(newGame);
 			System.out.println("New game: *"+newGame.getId());
-			
-			/*
-			if (first == null) {
-				first = newGame;
-				games.
-			}else {
-				insertGame(newGame,first,first.getNext());
-			}
-			*/
+	
 			
 		}
 		
 	}
-	
-	/*
-	private void insertGame(Game newGame, Game gamePrev, Game gameNext) {
-		if (gameNext == null) {
-			gamePrev.setNext(newGame);
-		}else {
-			insertGame(newGame,gameNext,gameNext.getNext());
-		}		
-	}
-	*/
 
 	public void setCode(String code) {
 		this.code = code;
@@ -65,6 +50,13 @@ public class Client {
 		return games;
 	}
 
+	public void setGamesHamper(MyStack<Game> gamesHamper) {
+		this.gamesHamper = gamesHamper;
+	}
+
+	public MyStack<Game> getGamesHamper() {
+		return gamesHamper;
+	}
 
 	public int getTime() {
 		return time;
@@ -78,6 +70,10 @@ public class Client {
 	public int getNumberOfGames() {
 		return games.size();
 	}
+
+
+
+
 
 
 

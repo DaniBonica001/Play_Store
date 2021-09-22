@@ -76,21 +76,38 @@ public class Store {
 		
 		return client;		
 	}
+	
+	public Shelf findShelf(String id) {
+		Shelf shelf = null;
+		for (int i=0;i<shelves.size();i++) {
+			if (shelves.get(i).getId().equals(id)) {
+				shelf = shelves.get(i);
+			}
+		}
+		
+		return shelf;	
+	}
 
 	public void orderGames(String id, int numberMethod) {
 		Client findClient = findClient(id);
 		
 		if (findClient!=null) {
 			ArrayList<Game> gamesToOrder = fromMyLinkedListToArrayList(findClient.getGames());
+			ArrayList<Game> gamesToTake = new ArrayList<>();
 			switch (numberMethod) {
 			case 1: 				
-				insertionSortOfGames(gamesToOrder);
+				gamesToTake = insertionSortOfGames(gamesToOrder);
 				break;
 				
 			case 2:
-				bubbleSortOfGames(gamesToOrder);
+				gamesToTake = bubbleSortOfGames(gamesToOrder);
 				break;
 			}
+			
+			printBestRoute(gamesToTake);
+			addGamesToHamper(findClient,gamesToTake);
+			
+			
 		}else {
 			System.out.println("El cliente no existe");
 		}
@@ -111,13 +128,16 @@ public class Store {
 		return orderGames;
 	}
 	
-	//Aquí con el arrayList anterior se busca cada juego con su código en casa Shelf, cuando lo encuentra 
+	
+	//Aquí con el arrayList anterior se busca cada juego con su código en cada Shelf, cuando lo encuentra 
 	//al juego le asgina el nombre del estante donde se encuentra.
 	private ArrayList<Game> assingShelvesNamesToGames(ArrayList<Game> games){
 		for (int j=0;j<games.size();j++) {
 			for (int i=0;i<shelves.size();i++) {				
 				if (shelves.get(i).getTable().containsKey(games.get(j).getId())) {
 					games.get(j).setNameShelf(String.valueOf(shelves.get(i).getId().charAt(0)));	
+					games.get(j).setPrice(shelves.get(i).getTable().get(games.get(j).getId()).getPrice());
+					games.get(j).setQuantity(shelves.get(i).getTable().get(games.get(j).getId()).getQuantity());
 					//System.out.println("Estantería: "+orderGames.get(j).getNameShelf()+ "tiene el juego"+orderGames.get(j).getId());	
 				}
 			}
@@ -126,7 +146,7 @@ public class Store {
 	}
 
 	//Método de ordenamiento insertionSort
-	public void insertionSortOfGames(ArrayList<Game> clientsGames) {
+	public ArrayList<Game> insertionSortOfGames(ArrayList<Game> clientsGames) {
 		Game temp = null;
 		//System.out.println("Vine al insertion");	
 		
@@ -146,11 +166,14 @@ public class Store {
 				}			
 			}							
 		}	
-		printBestRoute(clientsGames);
+		//printBestRoute(clientsGames);		
+		return clientsGames;
 	}
 		
+
+	
 	//Método de ordenamiento bubbleSort
-	public void bubbleSortOfGames(ArrayList<Game> clientsGames) {
+	public ArrayList<Game> bubbleSortOfGames(ArrayList<Game> clientsGames) {
 		Game temp = null;
 		for (int j=1;j<clientsGames.size();j++) {
 			//int changes =0;
@@ -164,13 +187,32 @@ public class Store {
 				
 			}
 		}
-		printBestRoute(clientsGames);
+		//printBestRoute(clientsGames);
+		return clientsGames;
 
+	}
+	
+	//Se añaden los juegos de cada cliente a una cesta (Esto sucede para cada uno)
+	public void addGamesToHamper(Client client, ArrayList<Game> clientsGames) {		
+		//Shelf shelf = null;
+		for (int i=0;i<clientsGames.size();i++) {
+			client.getGamesHamper().push(clientsGames.get(i));
+			//shelf = findShelf(clientsGames.get(i).getNameShelf());
+			
+			//shelf.getTable().get(clientsGames.get(i).getId()).setQuantity(clientsGames.get(i).getQuantity()-1);
+			//System.out.println("CANTIDAD DE JUEGOS: "+shelf.getTable().get(clientsGames.get(i).getId()).getQuantity());			
+		}	
+		
+		System.out.println("\nJuegos en canaste del cliente "+client.getCode()+": "+client.getGamesHamper().toString());
+		
+		
+		
+		//System.out.println("METODO PEEK: "+client.getGamesHamper().peek().toString());
 	}
 	
 	//Metodo para imprimir la ruta del cliente
 	public void printBestRoute(ArrayList<Game> gamesToTake) {
-		System.out.println("Su ruta para recoger sus videojuegos es la siguiente: "+"\nDiríjase primero al estante "+
+		System.out.println("SECCION 2:"+"\nSu ruta para recoger sus videojuegos es la siguiente: "+"\nDiríjase primero al estante "+
 				gamesToTake.get(0).getNameShelf()+" para retirar el juego con código: "+gamesToTake.get(0).getId());
 		
 		for (int h=1;h<=gamesToTake.size()-1;h++) {

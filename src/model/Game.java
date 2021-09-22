@@ -41,8 +41,23 @@ public class Game implements Comparable<Game>{
 	public int getId() {
 		return id;
 	}
-
 	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
 	public void setNext(Game next) {
 		this.next = next;
 	}
@@ -62,6 +77,7 @@ public class Game implements Comparable<Game>{
 	public String toString() {
 		return "GAME:"+id+"-"+price+"-"+quantity;
 	}
+	
 	@Override
 	public int compareTo(Game o) {
 		return nameShelf.compareTo(o.getNameShelf());
