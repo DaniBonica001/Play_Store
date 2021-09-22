@@ -16,59 +16,37 @@ public class MyStack<T> {
      this.top=-1;// Default value of top variable when stack is empty
  }
 
-// Method to push generic element into stack
- public void push(T X){
-     if (top + 1 == size) {// Checking if array is full
-         System.out.println("Stack Overflow");         // Display message when array is full
-     }
-     else {
+//Method to push generic element into stack
+public void push(T element){
+	top=top+1;
+	A.set(top, element);
+}
 
-         // Increment top to go to next position
-         top = top + 1;
+ // Method to return the top of the stack without deleting it
+public T peek() {
+	if(top>-1) {//Si el stack no está vacio
+		return A.get(top);
+	}else {
+		return null;
+	}
+	
+}
 
-         // Over-writing existing element
-         if (A.size() > top)
-             A.set(top, X);
-
-         else
-
-             // Creating new element
-             A.add(X);
-     }
- }
- // Method 2
- // To return topmost element of stack
-public T top() {
-     // If stack is empty
-     if (top == -1) {
-
-         // Display message when there are no elements in
-         // the stack
-         System.out.println("Stack Underflow");
-
+ // Method to return and delete the top element of stack
+ public T pop() {
+     if (top == -1) {//No hay elementos en stack
          return null;
      }
-
-     // else elements are present so
-     // return the topmost element
-     else
-         return A.get(top);
- }
-
- // Method 3
- // To delete last element of stack
- public void pop() {
-     // If stack is empty
-     if (top == -1) {//No hay elementos en stack
-         System.out.println("Stack Underflow");
+     else {
+    	 T object=A.get(top);//guardo el que era el top y el que se va a devolver
+    	 A.remove(top);//borro el elemento que estaba en el top
+    	 top=top-1;//muevo el top hacia abajo para indicar que el que le seguía ahora es el top
+    	 return object;
      }
-
-     else
-         top--;
  }
 
  // Method to check if stack is empty or not
- boolean empty() { 
+ boolean isEmpty() { 
 	 if(top==-1) {
 		 return true;
 	 }else {
@@ -80,13 +58,10 @@ public T top() {
  // To print the stack
  // @Override
  public String toString(){
-
      String Ans = "";
-
      for (int i = 0; i < top; i++) {
          Ans += String.valueOf(A.get(i)) + "->";
      }
-
      Ans += String.valueOf(A.get(top));
 
      return Ans;
