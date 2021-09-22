@@ -22,7 +22,7 @@ public class Client {
 		for (int i=1;i<=lineSplit.length-1;i++) {
 			Game newGame = new Game(Integer.parseInt(lineSplit[i]));
 			games.createNode(newGame);
-			//System.out.println("New game: *"+newGame.getId());
+			System.out.println("New game: *"+newGame.getId());
 			
 			/*
 			if (first == null) {
@@ -62,6 +62,8 @@ public class Client {
 	public MyLinkedList<Game> getGames() {
 		return games;
 	}
+
+
 
 
 

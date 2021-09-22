@@ -25,6 +25,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 	public void insertNode(Node<T> newNode, Node<T>nodePrev, Node<T>nodeNext) {
 		if (nodeNext == null) {
 			nodePrev.setNext(newNode);
+			newNode.setPrevious(nodePrev);
 		}else {
 			insertNode(newNode,nodeNext,nodeNext.getNext());
 		}

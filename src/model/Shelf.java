@@ -35,6 +35,5 @@ public class Shelf {
 	public void setTable(Hashtable<Integer, Game> table) {
 		this.table = table;
 	}
-
 	
 }

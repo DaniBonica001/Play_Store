@@ -3,6 +3,7 @@ package model;
 public class Game implements Comparable<Game>{
 	
 	//Attributes
+	private String nameShelf;
 	private int id;
 	private int price;
 	private int quantity;
@@ -12,7 +13,8 @@ public class Game implements Comparable<Game>{
 	private Game prev;
 	
 	//Constructor
-	public Game(int id, int price, int quantity) {
+	public Game(String nameShelf, int id, int price, int quantity) {
+		this.nameShelf = nameShelf;
 		this.id = id;
 		this.price=price;
 		this.quantity=quantity;
@@ -23,6 +25,13 @@ public class Game implements Comparable<Game>{
 		this.id = id;
 		next = null;
 		prev = null;
+	}
+	
+	public void setNameShelf(String nameShelf) {
+		this.nameShelf = nameShelf;
+	}
+	public String getNameShelf() {
+		return nameShelf;
 	}
 	
 	public void setId(int id) {
@@ -55,9 +64,11 @@ public class Game implements Comparable<Game>{
 	}
 	@Override
 	public int compareTo(Game o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return nameShelf.compareTo(o.getNameShelf());
 	}
+	
+
+
 
 	
 

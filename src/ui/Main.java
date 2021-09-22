@@ -19,7 +19,7 @@ public class Main {
 		String line;
 		int cases = Integer.parseInt(br.readLine());//La primer linea que es el numero de casos
 		System.out.println("cases: "+cases);
-		int cashiers, shelves, clients;
+		int cashiers, shelves, clients = 0;
 		String infoShelf;
 				
 		for (int i=0;i<cases;i++) {
@@ -35,15 +35,17 @@ public class Main {
 						createShelves(infoShelf);						
 					}
 					
-					System.out.println("PASO A CLIENT");
+					//System.out.println("PASO A CLIENT");
 					
 					clients = Integer.parseInt(br.readLine());
 					createClients(clients);	
 					
 					line = null ;
-					System.out.println("LINE: "+line);
+					//System.out.println("LINE: "+line);
 			 }			
 		}	
+		
+		orderGames(clients);
 
 	}
 	
@@ -64,8 +66,8 @@ public class Main {
 		
 		for(int i=0;i<Integer.parseInt(parts[1]);i++) {
 			System.out.print("*");
-			String[] infoGame=br.readLine().split(" "); //infogame=[codigo, precio, disponibilidad]
-			Game newGame= new Game(Integer.parseInt(infoGame[0]),Integer.parseInt(infoGame[1]), Integer.parseInt(infoGame[2]) );
+			String[] infoGame=br.readLine().split(" "); //infogame=[estantería, codigo, precio, disponibilidad]
+			Game newGame= new Game(parts[0],Integer.parseInt(infoGame[0]),Integer.parseInt(infoGame[1]), Integer.parseInt(infoGame[2]) );
 			System.out.println(newGame.toString());
 			games[i]=newGame;
 		}
@@ -75,14 +77,27 @@ public class Main {
 	
 	
 	public static void createClients(int clients) throws IOException {
-		//System.out.println("CLIENTS");
 		String line;
 				
 		for (int i=0;i<clients;i++) {
 			line = br.readLine();	
-			store.createClient(line);
-			
+			store.createClient(line);			
 		}
+	}
+	
+	public static void orderGames(int clients) throws NumberFormatException, IOException {
+		for (int i=0;i<clients;i++) {//Se pregunta a cada cliente con qué método quiere ordenar sus juegos
+			System.out.print("Ingrese su código: ");
+			String id = br.readLine();
+			
+			System.out.println("¿Por qué método desea ordenar los videojugos?"
+					+"\n Ingrese 1 para usar el método de insercción."
+					+"\n Ingrese 2 para usar el método burbuja"+"\n");
+			
+			int numberMethod = Integer.parseInt(br.readLine());
+			
+			store.orderGames(id,numberMethod);
+		}		
 	}
 	
 
