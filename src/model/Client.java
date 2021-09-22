@@ -6,6 +6,7 @@ public class Client {
 
 	//Attributes
 	private String code;
+	private int time;
 	
 	//Relations
 	private MyLinkedList<Game> games;
@@ -14,7 +15,8 @@ public class Client {
 	//Constructor
 	public Client(String code) {
 		this.code = code;
-		games = new MyLinkedList<>();		
+		games = new MyLinkedList<>();
+		this.setTime(0);
 	}
 
 	
@@ -61,6 +63,16 @@ public class Client {
 
 	public MyLinkedList<Game> getGames() {
 		return games;
+	}
+
+
+	public int getTime() {
+		return time;
+	}
+
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 

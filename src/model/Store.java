@@ -41,7 +41,6 @@ public class Store {
 		System.out.println("TABLA DE LA ESTANTERIA:"+shelf.getTable().toString());
 
 	}
-
 	
 	public void createClient(String line) {
 		String [] lineSplit = line.split(" "); //lineSplit=[cedula, codjuego1, codjuego2, codjeugo3,....]

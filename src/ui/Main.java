@@ -83,6 +83,13 @@ public class Main {
 			line = br.readLine();	
 			store.createClient(line);			
 		}
+		
+		//ASIGNAR TIEMPOS INICIALES DE CLIENTES
+		for(int i=0;i<store.getClients().size();i++) {
+			store.getClients().get(i).setTime(i+1);
+			//System.out.print("TIMES: "+store.getClients().get(i).getTime());
+		}
+		
 	}
 	
 	public static void orderGames(int clients) throws NumberFormatException, IOException {
