@@ -95,6 +95,12 @@ public class Main {
 		
 	}
 	
+	/*
+	 * Method that orders the games for each client in the store, then the client times are going to be updated
+	 * then the games picked are gonna be decreased in copies by one for each client that picked it up
+	 * and the last thing is that the list of clients (the cashier line) are going to be sorted from the client with less time
+	 * to the client with more time.
+	 */
 	public static void orderGames(int clients) throws NumberFormatException, IOException {
 		for (int i=0;i<clients;i++) {//Se pregunta a cada cliente con qué método quiere ordenar sus juegos
 			System.out.print("Ingrese su código: ");
@@ -151,6 +157,9 @@ public class Main {
 		}
 		*/
 		
+		//PARA HACER UNA FILA ORDENADA DE MENOR A MAYOR TIEMPO QUE ES CON LA QUE LLEGARÁN AL CAJERO
+		store.sortClientsByTime();
+		System.out.println("FILA ANTES DE PAGAR: "+store.getClients().toString());
 
 	}
 	

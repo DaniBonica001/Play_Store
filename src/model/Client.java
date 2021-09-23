@@ -3,7 +3,7 @@ package model;
 import MyLinkedList_data_structure.MyLinkedList;
 import MyStack_data_structure.MyStack;
 
-public class Client {
+public class Client implements Comparable<Client>{
 
 	//Attributes
 	private String code;
@@ -69,6 +69,22 @@ public class Client {
 	
 	public int getNumberOfGames() {
 		return games.size();
+	}
+
+
+	@Override
+	public int compareTo(Client o) {
+		if(time<o.getTime()) {
+			return -1;
+		}else if(time<o.getTime()) {
+			return 0;
+		}else {
+			return 1;
+		}
+	}
+	
+	public String toString() {
+		return "code: "+code+"- Time: "+time;
 	}
 
 

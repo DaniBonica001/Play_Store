@@ -1,7 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.Collections;
 
 import MyLinkedList_data_structure.MyLinkedList;
 import MyLinkedList_data_structure.Node;
@@ -235,6 +236,10 @@ public class Store {
 		
 		}
 
+	}
+	
+	public void sortClientsByTime() {
+		Collections.sort(clients);
 	}
 	
 	
