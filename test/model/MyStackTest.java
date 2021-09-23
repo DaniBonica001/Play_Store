@@ -13,6 +13,7 @@ public class MyStackTest extends TestCase {
 
         MyStack<Integer> stack = new MyStack<>();
 
+        assertNotNull(stack.getArray()); //Checks if the arraylist is created.
         assertTrue(stack.getArray().isEmpty()); //Checks if the arraylist is empty.
         assertEquals(-1, stack.getTop()); //Checks if top value is -1.
     }
