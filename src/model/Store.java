@@ -12,16 +12,16 @@ public class Store {
 	//Relations
 	private ArrayList<Client> clients;
 	private ArrayList<Shelf> shelves;
+	private ArrayList<Cashier> cashiers;
+	private int availableCashiers;
 	
 	public Store() {
 		clients = new ArrayList<>();
 		shelves= new ArrayList<>();
+		cashiers= new ArrayList<>();
+		setAvailableCashiers(0);
 	}
-
-	public void createCashier() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	public ArrayList<Shelf> getShelves() {
 		return shelves;
@@ -240,6 +240,33 @@ public class Store {
 	
 	public void sortClientsByTime() {
 		Collections.sort(clients);
+	}
+
+	public void createCashier(int numberOfCashiers) {
+		for(int i=0;i<numberOfCashiers;i++) {
+			Cashier newCashier= new Cashier(i);//i es el numero de cajero que le será asignado
+			cashiers.add(newCashier);
+		}
+	}
+
+
+	public ArrayList<Cashier> getCashiers() {
+		return cashiers;
+	}
+
+
+	public void setCashiers(ArrayList<Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+
+	public int getAvailableCashiers() {
+		return availableCashiers;
+	}
+
+
+	public void setAvailableCashiers(int availableCashiers) {
+		this.availableCashiers = availableCashiers;
 	}
 	
 	

@@ -8,6 +8,7 @@ public class Client implements Comparable<Client>{
 	//Attributes
 	private String code;
 	private int time;
+	private int billToPay;
 	
 	//Relations
 	private MyLinkedList<Game> games;
@@ -20,6 +21,7 @@ public class Client implements Comparable<Client>{
 		games = new MyLinkedList<>();
 		gamesHamper = new MyStack <>();
 		this.setTime(0);
+		setBillToPay(0);
 	}
 
 	
@@ -85,6 +87,16 @@ public class Client implements Comparable<Client>{
 	
 	public String toString() {
 		return "code: "+code+"- Time: "+time;
+	}
+
+
+	public int getBillToPay() {
+		return billToPay;
+	}
+
+
+	public void setBillToPay(int billToPay) {
+		this.billToPay = billToPay;
 	}
 
 
