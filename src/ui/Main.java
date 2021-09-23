@@ -3,8 +3,11 @@ package ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
+import model.Client;
 import model.Game;
+import model.Shelf;
 import model.Store;
 
 public class Main {
@@ -112,6 +115,41 @@ public class Main {
 			store.getClients().get(i).setTime(store.getClients().get(i).getTime()+timeToAdd);	
 			//System.out.println("TIEMPO DEL CLIENTE "+i+" :"+store.getClients().get(i).getTime());
 		}
+		
+		/*IMPRIMIR LOS JUEGOS DE LAS ESTANTERIAS ANTES DE RESTARLE UNIDADES
+		for(int i=0;i<store.getShelves().size();i++) {
+			Shelf shelf= store.getShelves().get(i);
+			System.out.println("A ESTANTERIA: "+shelf.getId()+"||"+shelf.getTable().toString());
+		}
+		*/
+		
+		/* 
+		 Despues de ordenar los juegos cada cliente queda con una lista de sus juegos, para cada cliente
+		 se recorrerá la lista y para cada juego que encuentre se le restará un ejemplar a los juegos del
+		 store
+		*/
+		for(int i=0;i<store.getClients().size();i++) {//Para cada cliente
+			Client client=store.getClients().get(i);//cliente i
+			ArrayList<Game> clientGames=store.fromMyLinkedListToArrayList(client.getGames());//Los juegos del cliente en un arraylist
+			
+			for(int j=0;j<client.getGames().size();j++) {//Para cada juego de cada cliente
+				Game game=clientGames.get(j);//juego j del cliente i
+				
+				for(int w=0;w<store.getShelves().size();w++) {//Para cada estantería del store
+					if(store.getShelves().get(w).findGame(game)!=null) {//si la estantería contiene el juego
+						Game gameToReduce=store.getShelves().get(w).getTable().get(game.getId());
+						gameToReduce.setQuantity(gameToReduce.getQuantity()-1);
+					}
+				}
+			}
+		}
+		
+		/*IMPRIMIR LOS JUEGOS DE LAS ESTANTERIAS DESPUES DE RESTARLE UNIDADES
+		for(int i=0;i<store.getShelves().size();i++) {
+			Shelf shelf= store.getShelves().get(i);
+			System.out.println("D ESTANTERIA: "+shelf.getId()+"||"+shelf.getTable().toString());
+		}
+		*/
 		
 
 	}

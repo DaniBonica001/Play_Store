@@ -22,6 +22,15 @@ public class Store {
 		
 	}
 	
+	public ArrayList<Shelf> getShelves() {
+		return shelves;
+	}
+
+	public void setShelves(ArrayList<Shelf> shelves) {
+		this.shelves = shelves;
+	}
+
+	
 	public void setClients(ArrayList<Client> clients) {
 		this.clients = clients;
 	}
@@ -116,7 +125,7 @@ public class Store {
 	
 	
 	//Este método guarda los juegos de la lista del cliente en un ArrayList
-	private ArrayList<Game> fromMyLinkedListToArrayList(MyLinkedList<Game> clientsGames) {
+	public ArrayList<Game> fromMyLinkedListToArrayList(MyLinkedList<Game> clientsGames) {
 		ArrayList<Game> orderGames = new ArrayList<>();
 		Node<Game> findGame = clientsGames.getFirst();
 		while(findGame!=null) {

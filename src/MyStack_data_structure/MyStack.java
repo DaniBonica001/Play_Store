@@ -79,4 +79,6 @@ public class MyStack<T> implements MyStackInterface<T>{
 		}
 		return Ans;
 	}
+	
+	
 }

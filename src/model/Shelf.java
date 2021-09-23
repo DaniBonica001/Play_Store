@@ -36,4 +36,8 @@ public class Shelf {
 		this.table = table;
 	}
 	
+	public Game findGame(Game game) {
+		return table.get(game.getId());
+	}
+	
 }
