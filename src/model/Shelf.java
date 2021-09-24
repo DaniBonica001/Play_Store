@@ -24,17 +24,15 @@ public class Shelf {
 		return id;
 	}
 	
-	public void hash() {
-		
+	public void setTable(Hashtable<Integer, Game> table) {
+		this.table = table;
 	}
-
+	
 	public Hashtable<Integer, Game> getTable() {
 		return table;
 	}
 
-	public void setTable(Hashtable<Integer, Game> table) {
-		this.table = table;
-	}
+
 	
 	public Game findGame(Game game) {
 		return table.get(game.getId());

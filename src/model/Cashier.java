@@ -3,42 +3,44 @@ package model;
 public class Cashier implements Comparable<Cashier> {
 
 	//Attributes
-	int cashierNumber;
-	int time;
+	private int cashierNumber;
+	private int time;
 	
 	//Relations
-	Client client;
+	private Client client;
 
-	
-	public int getTime() {
-		return time;
-	}
-
-	public void setTime(int time) {
-		this.time = time;
-	}
-
-	public int getCashierNumber() {
-		return cashierNumber;
-	}
-
-	public void setCashierNumber(int cashierNumber) {
-		this.cashierNumber = cashierNumber;
-	}
-
+	//Constructor
 	public Cashier(int cashierNumber) {
 		this.cashierNumber=cashierNumber;
 		this.time=0;
 		client=null;
 	}
 	
-	public Client getClient() {
-		return client;
+	public void setTime(int time) {
+		this.time = time;
+	}
+	
+	public int getTime() {
+		return time;
+	}
+
+	public void setCashierNumber(int cashierNumber) {
+		this.cashierNumber = cashierNumber;
+	}
+
+	public int getCashierNumber() {
+		return cashierNumber;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	
+	public Client getClient() {
+		return client;
+	}
+
 
 	@Override
 	public int compareTo(Cashier o) {

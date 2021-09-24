@@ -61,26 +61,24 @@ public class Client implements Comparable<Client>{
 		return gamesHamper;
 	}
 
-	public int getTime() {
-		return time;
-	}
-
-
 	public void setTime(int time) {
 		this.time = time;
 	}
 	
-	public int getNumberOfGames() {
-		return games.size();
+	public int getTime() {
+		return time;
 	}
 
 	public void setBillToPay(int billToPay) {
 		this.billToPay = billToPay;
 	}
 
-
 	public int getBillToPay() {
 		return billToPay;
+	}
+
+	public int getNumberOfGames() {
+		return games.size();
 	}
 
 	public void bill() {
