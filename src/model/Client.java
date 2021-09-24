@@ -10,6 +10,7 @@ public class Client implements Comparable<Client>{
 	private String code;
 	private int time;
 	private int billToPay;
+	private int entryPosition;
 	
 	//Relations
 	private MyLinkedList<Game> games;
@@ -21,6 +22,7 @@ public class Client implements Comparable<Client>{
 		this.code = code;
 		games = new MyLinkedList<>();
 		gamesHamper = new MyStack <>();
+		setEntryPosition(0);
 		this.setTime(0);
 		setBillToPay(0);
 	}
@@ -107,9 +109,9 @@ public class Client implements Comparable<Client>{
 			return -1;
 		}else if(time==o.getTime()) {
 			
-			if (games.size()<o.getGames().size()) {
+			if (entryPosition<o.getEntryPosition()) {
 				value = -1;
-			}else if (games.size()>o.getGames().size()) {
+			}else if (entryPosition>o.getEntryPosition()) {
 				value = 1;
 			}
 			
@@ -121,7 +123,17 @@ public class Client implements Comparable<Client>{
 	}
 	
 	public String toString() {
-		return "code: "+code+"- Time: "+time;
+		return "Cliente:"+code+"- Tiempo:"+time;
+	}
+
+
+	public int getEntryPosition() {
+		return entryPosition;
+	}
+
+
+	public void setEntryPosition(int entryPosition) {
+		this.entryPosition = entryPosition;
 	}
 
 
