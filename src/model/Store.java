@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import MyLinkedList_data_structure.MyLinkedList;
 import MyLinkedList_data_structure.Node;
+import MyQueue_data_structure.MyQueue;
 
 public class Store {
 	
@@ -356,10 +357,21 @@ public class Store {
 
 	}
 	
-	public void printOutput() {
+	public void fromArrayListToMyQueue() {
+		MyQueue<Client> clientsToQuit = new MyQueue<>(); 
+		//System.out.println("TAMAÑO ARRAY DE CLIENTS: "+clients.size());
 		for (int i=0;i<clients.size();i++) {
-			clients.get(i).bill();
-			System.out.println(clients.get(i).getCode()+" "+clients.get(i).getBillToPay()+"\n"+clients.get(i).gamesIDs());
+			clientsToQuit.enqueue(clients.get(i));
+		}
+		printOutput(clientsToQuit);
+	}
+	
+	public void printOutput(MyQueue<Client> clientsToQuit) {
+		
+		while (clientsToQuit.size()>0) {
+			Client client = clientsToQuit.dequeue();
+			client.bill();
+			System.out.println(client.getCode()+" "+client.getBillToPay()+"\n"+client.gamesIDs());		
 		}
 	}
 	

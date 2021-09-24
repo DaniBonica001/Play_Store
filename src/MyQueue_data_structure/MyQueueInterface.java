@@ -4,8 +4,9 @@ public interface MyQueueInterface<T> {
 	public T front() ;
 	public T rear() ;
 	public void enqueue(T X);
-	public void dequeue();
+	public T dequeue();
 	public boolean empty();
+	public int size();
 	public String toString();
 
 }

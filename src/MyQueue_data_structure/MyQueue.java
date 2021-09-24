@@ -46,12 +46,16 @@ public class MyQueue<T> implements MyQueueInterface<T> {
     
     
     // Deletes elements from the front from queue
-    public void dequeue()    {        
+    public T dequeue()    {
+    
         if (this.empty()) {
         	System.out.println("Queue is already empty");
+        	return null;
         }else {
-        	A.remove(0);        	
+        	return  A.remove(0);
+        	
         }
+                
     }
  
     // Checks whether the queue is empty
@@ -61,6 +65,10 @@ public class MyQueue<T> implements MyQueueInterface<T> {
         }else {
         	return false;
         }        
+    }
+    
+    public int size() {
+    	return A.size();
     }
     
      

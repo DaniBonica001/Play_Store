@@ -57,7 +57,8 @@ public class Main {
 		store.sortClientsByTime();
 		
 		System.out.println("***Orden de Salida de la tienda***");
-		store.printOutput();
+		store.fromArrayListToMyQueue();
+		//store.printOutput();
 	}
 	
 	public static void createStore() {
