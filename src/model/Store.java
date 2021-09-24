@@ -337,12 +337,12 @@ public class Store {
 						cashier.setClient(client);
 						cashier.setTime(cashier.getTime()+client.getNumberOfGames());
 						client.setTime(client.getTime()+client.getNumberOfGames());//Creo que esto es lo que me pides
-						System.out.println("Cliente: "+client.getCode()+" Cajero: "+cashier.getCashierNumber()+" Tiempo: "+cashier.getTime());
+						//System.out.println("Cliente: "+client.getCode()+" Cajero: "+cashier.getCashierNumber()+" Tiempo: "+cashier.getTime());
 						j=cashiers.size();
 					}
 				}
 			}else {
-				System.out.println("Ha llegado al final de los clientes en i="+i);
+				//System.out.println("Ha llegado al final de los clientes en i="+i);
 				break;
 			}
 

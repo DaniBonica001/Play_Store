@@ -56,7 +56,7 @@ public class Main {
 		store.paymentProcess();		
 		store.sortClientsByTime();
 		
-		System.out.println("OUTPUT");
+		System.out.println("***Orden de Salida de la tienda***");
 		store.printOutput();
 	}
 	
@@ -95,6 +95,7 @@ public class Main {
 		//ASIGNAR TIEMPOS INICIALES DE CLIENTES
 		for(int i=0;i<store.getClients().size();i++) {
 			store.getClients().get(i).setTime(i+1);
+			store.getClients().get(i).setEntryPosition(i+1);
 			//System.out.print("TIMES: "+store.getClients().get(i).getTime());
 		}
 		
