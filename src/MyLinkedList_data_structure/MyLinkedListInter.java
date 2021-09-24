@@ -9,5 +9,6 @@ public interface MyLinkedListInter <T extends Comparable<T>> {
 	public void deleteNode(Node<T> node);
 	public Node<T> getNode(Node<T>searchedNode);
 	public Node<T> lookForNode(Node<T>searchedNode, Node<T>actualNode);
+	public int size() ;
 
 }

@@ -1,10 +1,14 @@
 package model;
 
 public class Cashier implements Comparable<Cashier> {
-	//Relations
-	Client client;
+
+	//Attributes
 	int cashierNumber;
 	int time;
+	
+	//Relations
+	Client client;
+
 	
 	public int getTime() {
 		return time;

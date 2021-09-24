@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import MyLinkedList_data_structure.MyLinkedList;
@@ -39,7 +38,32 @@ public class Store {
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
+	
+	public void setCashiers(ArrayList<Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
 
+	
+	public ArrayList<Cashier> getCashiers() {
+		return cashiers;
+	}
+
+	public void setAvailableCashiers(int availableCashiers) {
+		this.availableCashiers = availableCashiers;
+	}
+	
+	public int getAvailableCashiers() {
+		return availableCashiers;
+	}
+	
+
+	public void createCashier(int numberOfCashiers) {
+		for(int i=0;i<numberOfCashiers;i++) {
+			Cashier newCashier= new Cashier(i);//i es el numero de cajero que le será asignado
+			cashiers.add(newCashier);
+		}
+	}
+	
 	public void createShelves(String info, Game[]games) {
 		Shelf shelf= new Shelf(info);
 		
@@ -63,8 +87,8 @@ public class Store {
 		
 
 	}
-	
-	public void printList(Client client,Node<Game> game) {	
+	/*
+	private void printList(Client client,Node<Game> game) {	
 		if (game!=null) {
 			System.out.println("CLIENT: "+client.getCode()+" ****Game: "+game.getElement().getId());
 			printList(client,game.getNext());
@@ -72,7 +96,7 @@ public class Store {
 		
 	
 	}
-	
+	*/
 	public Client findClient(String id) {
 		Client client = null;
 		boolean exit = false;
@@ -242,40 +266,117 @@ public class Store {
 		Collections.sort(clients);
 	}
 
-	public void createCashier(int numberOfCashiers) {
-		for(int i=0;i<numberOfCashiers;i++) {
-			Cashier newCashier= new Cashier(i);//i es el numero de cajero que le será asignado
-			cashiers.add(newCashier);
+	public void updateTimeOfClients(){
+		//Después de ordenar los juegos del cliente se actualizarán los tiempos ya que los recogerán
+		for(int i=0;i<clients.size();i++) {//Para cada cliente de la tienda 
+			int timeToAdd= clients.get(i).getGames().size(); //Obtiene la cantidad de juegos de cada cliente
+			clients.get(i).setTime(clients.get(i).getTime()+timeToAdd);	
+			//System.out.println("TIEMPO DEL CLIENTE "+i+" :"+clients.get(i).getTime());
+		}
+	}
+
+	public void decreaseAmountOfEachGame(){	 	
+		/*
+		Despues de ordenar los juegos cada cliente queda con una lista de sus juegos, para cada cliente
+		se recorrerá la lista y para cada juego que encuentre se le restará un ejemplar a los juegos del
+		store
+ 		*/
+		for(int i=0;i<clients.size();i++) {//Para cada cliente
+			Client client=clients.get(i);//cliente i
+			ArrayList<Game> clientGames=fromMyLinkedListToArrayList(client.getGames());//Los juegos del cliente en un arraylist
+
+			for(int j=0;j<client.getGames().size();j++) {//Para cada juego de cada cliente
+				Game game=clientGames.get(j);//juego j del cliente i
+
+				for(int w=0;w<shelves.size();w++) {//Para cada estantería del store
+					if(shelves.get(w).findGame(game)!=null) {//si la estantería contiene el juego
+						Game gameToReduce=shelves.get(w).getTable().get(game.getId());
+						gameToReduce.setQuantity(gameToReduce.getQuantity()-1);
+					}
+				}
+			}
+		}
+	}
+	public  void paymentProcess() {
+		/*
+		* 1. Coger la fila de los de clientes y la cantidad de cajeros
+		* 2. Recorrer los cajeros disponibles (cajero.cliente==null) y asignarle los clientes en orden
+		* cuando se llenan los cajeros disponibles se hace el proceso de pago.
+		* 3. Cada vez que un cajero termine el proceso, la lista de cajeros debe ser ordenada desde el primero
+		* que se desocupó hasta el último, cuando esto está así se repite el proceso hasta que la lista de clientes 
+		* haya sido recorrida completamente
+		*/
+		int i=0;
+		while(clients.size()>i) {//mientras que i(posicion actual) sea menor igual que la cantidad de clientes
+			int p=cashiersCycle(i);
+			Collections.sort(cashiers);
+			for(int j=0;j<cashiers.size();j++) {
+				cashiers.get(j).setClient(null);			
+			}
+			if(p==-1) {
+				break;
+			}else {
+				i=p;
+			}
 		}
 	}
 
 
-	public ArrayList<Cashier> getCashiers() {
-		return cashiers;
+	//tengo que hacer este metodo cada que los 3 cajeros se desocupen
+	private  int cashiersCycle(int posInicio) {
+		int i;
+
+		for(i=posInicio;i<posInicio+cashiers.size();i++) {//cada 3 cajeros
+			if(clients.size()>i) {
+				Client client=clients.get(i);
+
+				for(int j=0;j<cashiers.size();j++) {
+					Cashier cashier=cashiers.get(j);
+
+					if(cashier.getClient()==null) {
+						cashier.setClient(client);
+						cashier.setTime(cashier.getTime()+client.getNumberOfGames());
+						client.setTime(client.getTime()+client.getNumberOfGames());//Creo que esto es lo que me pides
+						System.out.println("Cliente: "+client.getCode()+" Cajero: "+cashier.getCashierNumber()+" Tiempo: "+cashier.getTime());
+						j=cashiers.size();
+					}
+				}
+			}else {
+				System.out.println("Ha llegado al final de los clientes en i="+i);
+				break;
+			}
+
+		}
+
+		if(i<=clients.size()) {
+			return i;
+		}else {
+			return -1;
+		}
+
 	}
-
-
-	public void setCashiers(ArrayList<Cashier> cashiers) {
-		this.cashiers = cashiers;
-	}
-
-
-	public int getAvailableCashiers() {
-		return availableCashiers;
-	}
-
-
-	public void setAvailableCashiers(int availableCashiers) {
-		this.availableCashiers = availableCashiers;
+	
+	public void printOutput() {
+		for (int i=0;i<clients.size();i++) {
+			clients.get(i).bill();
+			System.out.println(clients.get(i).getCode()+" "+clients.get(i).getBillToPay()+"\n"+clients.get(i).gamesIDs());
+		}
 	}
 	
 	
 
-	
 
 
-	
 
-	
+
+
+
+
+
+
+
+
+
+
 
 }

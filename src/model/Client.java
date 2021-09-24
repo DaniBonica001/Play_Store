@@ -1,6 +1,7 @@
 package model;
 
 import MyLinkedList_data_structure.MyLinkedList;
+import MyLinkedList_data_structure.Node;
 import MyStack_data_structure.MyStack;
 
 public class Client implements Comparable<Client>{
@@ -73,13 +74,49 @@ public class Client implements Comparable<Client>{
 		return games.size();
 	}
 
+	public void setBillToPay(int billToPay) {
+		this.billToPay = billToPay;
+	}
+
+
+	public int getBillToPay() {
+		return billToPay;
+	}
+
+	public void bill() {
+		Node<Game> game  = games.getFirst();
+		while(game!=null) {
+			billToPay += game.getElement().getPrice();
+			game = game.getNext();
+		}
+	}
+	
+	public String gamesIDs() {
+		String message = "";
+		Node<Game> game  = games.getFirst();
+		while(game!=null) {
+			message += game.getElement().getId()+" ";
+			game = game.getNext();
+		}
+		return message;
+	}
+
 
 	@Override
 	public int compareTo(Client o) {
+		int value = 0;
 		if(time<o.getTime()) {
 			return -1;
-		}else if(time<o.getTime()) {
-			return 0;
+		}else if(time==o.getTime()) {
+			
+			if (games.size()<o.getGames().size()) {
+				value = -1;
+			}else if (games.size()>o.getGames().size()) {
+				value = 1;
+			}
+			
+			return value;
+			
 		}else {
 			return 1;
 		}
@@ -88,19 +125,6 @@ public class Client implements Comparable<Client>{
 	public String toString() {
 		return "code: "+code+"- Time: "+time;
 	}
-
-
-	public int getBillToPay() {
-		return billToPay;
-	}
-
-
-	public void setBillToPay(int billToPay) {
-		this.billToPay = billToPay;
-	}
-
-
-
 
 
 

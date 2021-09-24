@@ -133,14 +133,6 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 			}
 		}
 	}
-
-	public void setFirst(Node<T> first) {
-		this.first = first;
-	}
-	
-	public Node<T> getFirst() {
-		return first;
-	}
 	
 	public int size() {
 		
@@ -153,6 +145,16 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 
 		return contador;
 	}
+
+	public void setFirst(Node<T> first) {
+		this.first = first;
+	}
+	
+	public Node<T> getFirst() {
+		return first;
+	}
+	
+
 	
 
 	
