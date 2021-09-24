@@ -14,11 +14,13 @@ public class Store {
 	private ArrayList<Shelf> shelves;
 	private ArrayList<Cashier> cashiers;
 	private int availableCashiers;
+	private MyQueue<Client>clientsToQuit;
 	
 	public Store() {
 		clients = new ArrayList<>();
 		shelves= new ArrayList<>();
 		cashiers= new ArrayList<>();
+		clientsToQuit = new MyQueue<>();
 		setAvailableCashiers(0);
 	}
 	
@@ -357,17 +359,15 @@ public class Store {
 
 	}
 	
-	public void fromArrayListToMyQueue() {
-		MyQueue<Client> clientsToQuit = new MyQueue<>(); 
+	public void fromArrayListToMyQueue() {		 
 		//System.out.println("TAMAÑO ARRAY DE CLIENTS: "+clients.size());
 		for (int i=0;i<clients.size();i++) {
 			clientsToQuit.enqueue(clients.get(i));
 		}
-		printOutput(clientsToQuit);
+		printOutput();
 	}
 	
-	public void printOutput(MyQueue<Client> clientsToQuit) {
-		
+	public void printOutput() {		
 		while (clientsToQuit.size()>0) {
 			Client client = clientsToQuit.dequeue();
 			client.bill();
