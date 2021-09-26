@@ -1,21 +1,43 @@
 package model;
 
 import MyStack_data_structure.MyStack;
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class MyStackTest extends TestCase {
+public class MyStackTest {
 
+    private MyStack<Game> stack;
+
+    // Scenes
     public void sc1() {
     }
 
-    public void testMyStack(){ //Test MyStack constructor.
+    public void sc2() {
+        stack = new MyStack<>();
+    }
+
+    // Constructor Test
+    @Test
+    public void testMyStack(){ //Tests MyStack constructor.
         sc1();
 
-        MyStack<Integer> stack = new MyStack<>();
+        MyStack<Game> stack = new MyStack<>();
 
-        assertNotNull(stack.getArray()); //Checks if the arraylist is created.
-        assertTrue(stack.getArray().isEmpty()); //Checks if the arraylist is empty.
-        assertEquals(-1, stack.getTop()); //Checks if top value is -1.
+        Assert.assertNotNull(stack.getArray()); //Checks if the arraylist is created.
+        Assert.assertTrue(stack.getArray().isEmpty()); //Checks if the arraylist is empty.
+        Assert.assertEquals(-1, stack.getTop()); //Checks if top value is -1.
+    }
+
+    // Push Tests
+    @Test
+    public void testPush1() {
+        sc2();
+
+        Game game = new Game("Shelf A", 10, 50, 1);
+        stack.push(game);
+
+        Assert.assertEquals(0, stack.getTop());
+        Assert.assertFalse(stack.isEmpty());
     }
 
 }
