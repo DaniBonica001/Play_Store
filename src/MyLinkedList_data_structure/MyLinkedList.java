@@ -1,6 +1,6 @@
 package MyLinkedList_data_structure;
 
-public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<T>{
+public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInterface<T> {
 	
 	private Node<T> first;
 
@@ -19,7 +19,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 	
 	//Methods createNode
 	public void createNode(T element) {
-		Node<T> newNode = new Node<T>(element);
+		Node<T> newNode = new Node<>(element);
 		
 		if (first == null) {			
 			first = newNode;
@@ -73,11 +73,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 	
 	//Method to know if the Linked List has elements or not
 	public boolean isEmpty() {
-		if(first==null) {
-			return true;
-		}else {
-			return false;
-		}
+		return first == null;
 	}
 	
 	//Method to know if there is an existing node
@@ -99,7 +95,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInter<
 	
 	//Method that delete an existing node
 	public void deleteNode(Node<T> node) {
-		if(existingNode(node, first)==true) {
+		if(existingNode(node, first)) {
 			if(node.getPrevious()!=null) {//Si node tiene anterior
 				if(node.getNext()!=null) {//Si node tiene anterior y siguiente
 					node.getPrevious().setNext(node.getNext());
