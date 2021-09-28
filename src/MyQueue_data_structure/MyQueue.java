@@ -12,7 +12,7 @@ public class MyQueue<T> implements MyQueueInterface<T> {
     //Constructor
     public MyQueue() {
     	A = new ArrayList<>();
-    	front = -1;
+    	front = 0;
     	rear = A.size()-1;
     }
         
