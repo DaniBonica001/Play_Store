@@ -82,13 +82,6 @@ public class MyQueueTest {
         Assert.assertEquals(front, queue.front());
     }
 
-    @Test
-    public void testFront2() {
-        sc1();
-
-        Assert.assertNull(queue.front());
-    }
-
     // Rear Tests
     @Test
     public void testRear1() {
