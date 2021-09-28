@@ -18,7 +18,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInterf
 	}
 	
 	//Methods createNode
-	public void createNode(T element) {
+	public Node<T> createNode(T element) {
 		Node<T> newNode = new Node<>(element);
 		
 		if (first == null) {			
@@ -26,7 +26,8 @@ public class MyLinkedList<T extends Comparable<T>> implements MyLinkedListInterf
 			
 		}else {
 			insertNode(newNode,first,first.getNext());			
-		}						
+		}
+		return newNode;
 	}
 	
 	//Method to add node in order
