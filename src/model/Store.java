@@ -125,7 +125,7 @@ public class Store {
 		return shelf;	
 	}
 
-	public void orderGames(String id, int numberMethod) {
+	public String orderGames(String id, int numberMethod) {
 		Client findClient = findClient(id);
 		
 		if (findClient!=null) {
@@ -141,12 +141,13 @@ public class Store {
 				break;
 			}
 			
-			printBestRoute(gamesToTake);
-			addGamesToHamper(findClient,gamesToTake);
-			
+			StringBuilder route = printBestRoute(gamesToTake);
+			String hamper = addGamesToHamper(findClient,gamesToTake);
+
+			return route.toString() + hamper;
 			
 		}else {
-			System.out.println("El cliente no existe");
+			return "El cliente no existe";
 		}
 		
 	}	
@@ -230,7 +231,7 @@ public class Store {
 	}
 	
 	//Se añaden los juegos de cada cliente a una cesta (Esto sucede para cada uno)
-	public void addGamesToHamper(Client client, ArrayList<Game> clientsGames) {		
+	public String addGamesToHamper(Client client, ArrayList<Game> clientsGames) {
 		//Shelf shelf = null;
 		for (int i=0;i<clientsGames.size();i++) {
 			client.getGamesHamper().push(clientsGames.get(i));
@@ -240,7 +241,7 @@ public class Store {
 			//System.out.println("CANTIDAD DE JUEGOS: "+shelf.getTable().get(clientsGames.get(i).getId()).getQuantity());			
 		}	
 		
-		System.out.println("\nJuegos en canaste del cliente "+client.getCode()+": "+client.getGamesHamper().toString());
+		return "\nJuegos en canaste del cliente "+client.getCode()+": "+client.getGamesHamper().toString();
 		
 		
 		
@@ -248,20 +249,19 @@ public class Store {
 	}
 	
 	//Metodo para imprimir la ruta del cliente
-	public void printBestRoute(ArrayList<Game> gamesToTake) {
-		System.out.println("SECCION 2:"+"\nSu ruta para recoger sus videojuegos es la siguiente: "+"\nDiríjase primero al estante "+
-				gamesToTake.get(0).getNameShelf()+" para retirar el juego con código: "+gamesToTake.get(0).getId());
+	public StringBuilder printBestRoute(ArrayList<Game> gamesToTake) {
+		StringBuilder message = new StringBuilder("SECCION 2:" + "\nSu ruta para recoger sus videojuegos es la siguiente: " + "\nDiríjase primero al estante " + gamesToTake.get(0).getNameShelf() + " para retirar el juego con código: " + gamesToTake.get(0).getId());
 		
 		for (int h=1;h<=gamesToTake.size()-1;h++) {
 			if (h!=gamesToTake.size()-1) {
-				System.out.println("Luego, diríjase al estante "+gamesToTake.get(h).getNameShelf()+
-						" para retirar el juego con código: "+gamesToTake.get(h).getId());
+				message.append("\nLuego, diríjase al estante ").append(gamesToTake.get(h).getNameShelf()).append(" para retirar el juego con código: ").append(gamesToTake.get(h).getId());
 			}else {
-				System.out.println("Finalmente, diríjase al estante "+gamesToTake.get(h).getNameShelf()+
-						" para retirar el juego con código: "+gamesToTake.get(h).getId());
+				message.append("\nFinalmente, diríjase al estante ").append(gamesToTake.get(h).getNameShelf()).append(" para retirar el juego con código: ").append(gamesToTake.get(h).getId());
 			}
 		
 		}
+
+		return message;
 
 	}
 	
@@ -358,24 +358,27 @@ public class Store {
 		}
 
 	}
-	
-	public void fromArrayListToMyQueue() {		 
+
+	public String fromArrayListToMyQueue() {
 		//System.out.println("TAMAÑO ARRAY DE CLIENTS: "+clients.size());
 		for (int i=0;i<clients.size();i++) {
 			clientsToQuit.enqueue(clients.get(i));
 		}
-		printOutput();
+		return printOutput() + "\n";
 	}
-	
-	public void printOutput() {		
+
+	public String printOutput() {
+		StringBuilder message = new StringBuilder();
 		while (clientsToQuit.size()>0) {
 			Client client = clientsToQuit.dequeue();
 			client.bill();
-			System.out.println(client.getCode()+" "+client.getBillToPay()+"\n"+client.gamesIDs());		
+			message.append(client.getCode()).append(" ").append(client.getBillToPay()).append("\n").append(client.gamesIDs()).append("\n");
 		}
+		return message.toString();
 	}
-	
-	
+
+
+
 
 
 
