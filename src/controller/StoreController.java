@@ -76,7 +76,7 @@ public class StoreController {
     private int shelvesCreated = 0;
 
     @FXML
-    void toStep2(ActionEvent event) {
+    public void toStep2(ActionEvent event) {
 
         if(!txtCashiers.getText().isEmpty() && !txtShelves.getText().isEmpty()) {
             int cashiersAmount = Integer.parseInt(txtCashiers.getText());
@@ -103,7 +103,7 @@ public class StoreController {
     }
 
     @FXML
-    void nextShelve(ActionEvent event) {
+    public void nextShelve(ActionEvent event) {
         if(shelvesCreated==shelvesToCreate-1) {
             btnNextShelve.setDisable(true);
             btnToStep3.setDisable(false);
@@ -123,7 +123,7 @@ public class StoreController {
     }
 
     @FXML
-    void toStep4() {
+    public void toStep4() {
         createClients();
         for(int i=0;i<store.getClients().size();i++) {
             store.getClients().get(i).setTime(i+1);
@@ -173,7 +173,7 @@ public class StoreController {
 
 
     @FXML
-    void toStep3() {
+    public void toStep3() {
         disableStep1();
         lblClients.setDisable(false);
         txtClients.setDisable(false);

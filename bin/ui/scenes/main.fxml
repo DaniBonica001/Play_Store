@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <VBox fx:id="vbox" alignment="CENTER" fillWidth="false" prefHeight="720.0" prefWidth="500.0" spacing="5.0" style="-fx-background-color: #e8e8e8;">
+         <children>
+            <Label text="PlayStore">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblInfo" text="Please, define the amount for each.">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Separator>
+            <Label fx:id="lblCashiers" text="Cashiers" />
+            <TextField fx:id="txtCashiers" alignment="CENTER" promptText="Cashiers Amount" />
+            <Label fx:id="lblShelves" text="Shelves" />
+            <TextField fx:id="txtShelves" alignment="CENTER" promptText="Shelves Amount">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="btnToStep2" mnemonicParsing="false" onAction="#toStep2" text="Continue">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <HBox prefWidth="300.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="txtShelfID" disable="true" promptText="Shelf ID" />
+                  <TextField fx:id="txtGamesAmount" disable="true" promptText="Games Amount" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lblInfoShelves" disable="true" text="For each game, follow the format: Code Price Amount" />
+            <TextArea fx:id="txtShelvesInfo" disable="true" prefWidth="300.0" promptText="Use one line for each game">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextArea>
+            <Button fx:id="btnNextShelve" disable="true" mnemonicParsing="false" onAction="#nextShelve" text="Save Shelf">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnToStep3" disable="true" mnemonicParsing="false" onAction="#toStep3" text="Next Step" />
+         </children>
+      </VBox>
+      <VBox fx:id="vbox1" alignment="CENTER" fillWidth="false" layoutX="500.0" prefHeight="720.0" prefWidth="500.0" spacing="5.0" style="-fx-background-color: #e8e8e8;">
+         <children>
+            <Label fx:id="lblClients" disable="true" text="Clients" />
+            <TextField fx:id="txtClients" alignment="CENTER" disable="true" promptText="Clients Amount">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="lblInfoClients" disable="true" text="For each client, follow the format: &lt;ID&gt; &lt;Game Codes&gt;" />
+            <TextArea fx:id="txtClientsInfo" disable="true" prefWidth="300.0" promptText="Don't include brackets">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextArea>
+            <Button fx:id="btnToStep4" disable="true" mnemonicParsing="false" onAction="#toStep4" text="Continue" />
+         </children>
+      </VBox>
+   </children>
+</Pane>
